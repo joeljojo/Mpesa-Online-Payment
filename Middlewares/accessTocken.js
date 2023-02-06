@@ -24,4 +24,4 @@ const authenticationTocken = async (req, res, next) => {
   }
 };
 
-module.exports = authenticationTocken;
+module.exports = { authenticationTocken };
