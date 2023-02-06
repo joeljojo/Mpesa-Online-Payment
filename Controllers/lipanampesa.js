@@ -1,8 +1,8 @@
 const axios = require('axios');
+require('dotenv').config();
 const authenticationTocken = require('../Middlewares/accessTocken');
 const getCurrentTimeStamp = require('../Utils/timestamp');
-const dotenv = require('dotenv');
-dotenv.config();
+
 class Mpesa {
   async lipaNaMpesaOnline(req, res) {
     let token = authenticationTocken();
