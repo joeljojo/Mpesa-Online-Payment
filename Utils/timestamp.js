@@ -20,4 +20,4 @@ const getCurrentTimeStamp = () => {
   return `${year}${month}${day}${hour}${minute}${second}`;
 };
 
-export default getCurrentTimeStamp;
+module.exports = getCurrentTimeStamp;
