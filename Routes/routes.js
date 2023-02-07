@@ -5,11 +5,11 @@ const mpesaControllers = require('../Controllers/lipanampesa');
 const accessToken = require('../Middlewares/accessTocken');
 
 //route to get authentication tocken
-router.get('/auth-token', accessToken.authenticationTocken);
+router.get('/auth-token', mpesaControllers.authenticationTocken);
 // lipa-na-mpesa route
 router.post(
   '/lipa-na-mpesa',
-  accessToken.authenticationTocken,
+  mpesaControllers.authenticationTocken,
   mpesaControllers.lipaNaMpesaOnline
 );
 
