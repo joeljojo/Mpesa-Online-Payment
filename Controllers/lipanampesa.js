@@ -42,14 +42,14 @@ class MpesaApi {
     let password = new Buffer.from(
       `${businessShortCode}${passKey}${timestamp}`
     ).toString('base64');
-    let transactionType = 'CustomerPayBillOnline';
-    let amount = '1'; //you can enter any amount
-    let partyA = process.env.PHONE_NUMBER; //should follow the format:2547xxxxxxxx
-    let partyB = process.env.BUSINESS_SHORT_CODE;
-    let phoneNumber = process.env.PHONE_NUMBER; //should follow the format:2547xxxxxxxx
-    let callBackUrl = `${process.env.CALLBACK_URL}/lipa-na-mpesa-callback`;
-    let accountReference = 'Lipa Matunda';
-    let transactionDescription = 'Mpesa Online Payment';
+    let transactionType = 'CustomerPayBillOnline'; // used to identify the transaction when sending request
+    let amount = '1'; //Amount transacted
+    let partyA = process.env.PHONE_NUMBER; // Phone number sending the money
+    let partyB = process.env.BUSINESS_SHORT_CODE; // orhanozation shortcode (Paybill)
+    let phoneNumber = process.env.PHONE_NUMBER; //mobile number to receive the stk Pin Prompt
+    let callBackUrl = `${process.env.CALLBACK_URL}/lipa-na-mpesa-callback`; //receive notifications from M-Pesa API
+    let accountReference = 'Lipa Matunda'; // Identifies the transactions
+    let transactionDescription = 'Mpesa Online Payment'; // Additional information
 
     try {
       let { data } = await axios
@@ -83,14 +83,14 @@ class MpesaApi {
     } catch (err) {
       return res.send({
         success: false,
-        message: err['response']['statusText'],
+        message: err.response.statusText,
       });
     }
   }
 
   lipaNaMpesaCallBack(req, res) {
     //Get the transaction description
-    let message = req.body.Body.stkCallback['ResultDesc'];
+    let message = req.body.Body.stkCallback.ResultDesc;
 
     return res.send({
       success: true,

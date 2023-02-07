@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const mpesaControllers = require('../Controllers/lipanampesa');
-const accessToken = require('../Middlewares/accessTocken');
 
 //route to get authentication tocken
 router.get('/auth-token', mpesaControllers.authenticationTocken);
